@@ -19,13 +19,20 @@ class CountryLocalizations {
       _CountryLocalizationsDelegate();
 
   late Map<String, String> _localizedStrings;
+  late Map<String, String> _localizedStringsEnglish;
 
   Future<bool> load() async {
     String jsonString = await rootBundle.loadString(
         'packages/country_code_picker/i18n/${locale.languageCode}.json');
     Map<String, dynamic> jsonMap = json.decode(jsonString);
+    String jsonStringEnglish = await rootBundle
+        .loadString('packages/country_code_picker/i18n/en.json');
+    Map<String, dynamic> jsonMapEnglish = json.decode(jsonStringEnglish);
 
     _localizedStrings = jsonMap.map((key, value) {
+      return MapEntry(key, value.toString());
+    });
+    _localizedStringsEnglish = jsonMapEnglish.map((key, value) {
       return MapEntry(key, value.toString());
     });
 
@@ -34,6 +41,10 @@ class CountryLocalizations {
 
   String? translate(String? key) {
     return _localizedStrings[key!];
+  }
+
+  String? translateInEnglish(String? key) {
+    return _localizedStringsEnglish[key!];
   }
 }
 
@@ -119,7 +130,7 @@ class _CountryLocalizationsDelegate
 
   @override
   Future<CountryLocalizations> load(Locale locale) async {
-    CountryLocalizations localizations = new CountryLocalizations(locale);
+    CountryLocalizations localizations = CountryLocalizations(locale);
     await localizations.load();
     return localizations;
   }

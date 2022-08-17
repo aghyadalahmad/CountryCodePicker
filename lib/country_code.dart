@@ -65,7 +65,7 @@ class CountryCode {
       name: json['name'],
       code: json['code'],
       dialCode: json['dial_code'],
-      flagUri: 'flags/${json['code'].toLowerCase()}.png',
+      flagUri: 'assets/flags/${json['code'].toLowerCase()}.png',
     );
   }
 

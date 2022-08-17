@@ -16,7 +16,7 @@ dependencies:
 
 flutter:
   assets:
-    - assets/flags/
+    - flags/
     - packages/country_code_picker/i18n/af.json
     - packages/country_code_picker/i18n/am.json
     - packages/country_code_picker/i18n/ha.json
